@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberReflex - Jogo de Agilidade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ CyberReflex</h1>
+            <p>Clique no máximo de alvos que conseguir em 15 segundos!</p>
+        </header>
+
+        <div class="controles">
+            <input type="text" id="nome-jogador" placeholder="Digite seu apelido..." maxlength="15">
+            <button id="btn-iniciar">Iniciar Jogo</button>
+        </div>
+
+        <div class="placar-atual">
+            <span>Tempo: <strong id="tempo">15</strong>s</span>
+            <span>Pontos: <strong id="pontos">0</strong></span>
+        </div>
+
+        <div id="arena">
+            <div id="alvo" class="escondido"></div>
+        </div>
+
+        <div class="ranking-box">
+            <h2>🏆 Top 10 Ranking Mundial</h2>
+            <ul id="lista-ranking">
+                <li>Carregando pontuações do banco de dados...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+header h1 {
+    color: #38bdf8;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.controles {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    background: #1e293b;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+input:focus {
+    border-color: #38bdf8;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #0284c7;
+    color: white;
+}
+
+button:disabled {
+    background: #475569;
+    cursor: not-allowed;
+}
+
+.placar-atual {
+    display: flex;
+    justify-content: space-around;
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+#arena {
+    width: 100%;
+    height: 320px;
+    background: #1e293b;
+    border: 2px solid #38bdf8;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+#alvo {
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, #f43f5e, #be123c);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    box-shadow: 0 0 12px #f43f5e;
+    transition: transform 0.05s;
+}
+
+#alvo:active {
+    transform: scale(0.9);
+}
+
+.escondido {
+    display: none;
+}
+
+.ranking-box {
+    background: #1e2
